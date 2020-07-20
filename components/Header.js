@@ -15,7 +15,7 @@ export default function Header({ profile: { email, firstName, lastName, location
   const fullName = `${firstName} ${lastName}`
 
   return (
-    <div>
+    <>
       <Head>
         <title>Resume - {fullName} </title>
       </Head>
@@ -38,6 +38,6 @@ export default function Header({ profile: { email, firstName, lastName, location
           text-indent: 10%;
         `}>{headline}</p>
       </div>
-    </div>
+    </>
   )
 }

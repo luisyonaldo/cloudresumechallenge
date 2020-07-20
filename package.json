@@ -8,10 +8,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "serve": "^11.3.2"
+  },
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next export",
+    "serve": "serve out",
     "start": "next start"
   }
 }
