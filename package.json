@@ -1,0 +1,17 @@
+{
+  "name": "cloudresumechallenge",
+  "version": "1.0.0",
+  "description": "A cloud project to advance your career.",
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}

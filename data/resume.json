@@ -1,0 +1,173 @@
+{
+	"profile": {
+		"email": "luisyonaldo@gmail.com",
+		"firstName": "Luis Y",
+		"headline": "An Engineer geek who is always looking how to mix the mathematical and scientific analysis with computational applications and tech tools to develop creative solutions that solve technological problems. My two personal passions are: being a curious thinker and seeking new challenges. To that end, I am always looking for extracurricular activities and innovative projects and hobbies.",
+		"lastName": "Nuñez G",
+		"location": "Amsterdam, Netherlands"
+	},
+	"organizations": [
+		{
+			"name": "Booking.com",
+			"occupation": "Site Reliability Engineer",
+			"location": "Amsterdam, Netherlnads",
+			"notes": [
+				"Provide a distributed, fault-tolerant, self-healing storage system. Automate the set up, operation, scalability and maintenance of a relational databases. ( MySQL/MariaDB, Orchestrator, golang, python)."
+			],
+			"startMonthYear": "June 2019",
+			"endMonthYear": null
+		},
+		{
+			"name": "KPN",
+			"occupation": "DevOps Engineer",
+			"location": "Amsterdam, Netherlnads",
+			"notes": [
+				"Migrate the interactive TV platform from a monolithic to a micro-services architecture hosted in a bare metal self-hosted Kubernetes cluster using a private container registry with image security scan. (Kubernetes, Harbor).",
+				"Support teams and improve tools for continuous integration, automated testing and release/deployment management. (Helm, Jenkins, Gitlab, Ansible, Docker)."
+			],
+			"startMonthYear": "Nov 2017",
+			"endMonthYear": "May 2019"
+		},
+		{
+			"name": "Clyp",
+			"occupation": "Cofounder, DevOps / Backend Engineer",
+			"location": "Amsterdam, Netherlnads",
+			"notes": [
+				"Distributed web application with high data stream processing. Logging and data visualization dashboard of an event-driven architecture (Nginx, NodeJS, Postgres, Haxl, Graphql)."
+			],
+			"startMonthYear": "May 2017",
+			"endMonthYear": "Nov 2019"
+		},
+		{
+			"name": "Yippie!",
+			"occupation": "DevOps Engineer",
+			"location": "Amsterdam, Netherlnads",
+			"notes": [
+				"Continue delivery process to automate infrastructure and application deployments in AWS, orchestrating containers running on EC2 instances together with AWS services. (Jenkins, Ansible, Terraform, AWS, Slack Bots).",
+				"Start the migration of all micro-services to a self hosted Kubernetes cluster in AWS. (AWS, Kubernetes)."
+			],
+			"startMonthYear": "July 2016",
+			"endMonthYear": "Apr 2017"
+		},
+		{
+			"name": "Navicu",
+			"occupation": "DevOps Engineer",
+			"location": "Valencia, Venezuela",
+			"notes": [
+				"Develop and manage a development and test environment based on containers for easier and faster software development. (Docker).",
+				"Migrate applications to a cloud environment and start moving monolithic services to micro-services architecture (DigitalOcean, Docker).",
+				"Design a cluster orchestration system for a distributed web application using a Platform as a Service model (CoreOS, Kubernetes, GCP)."
+			],
+			"startMonthYear": "Nov 2015",
+			"endMonthYear": "Aug 2016"
+		},
+		{
+			"name": "Febeca C.A.",
+			"occupation": "Sysadmin / Support Engineer",
+			"location": "Valencia, Venezuela",
+			"notes": [
+				"Provide quality production support and ensure systems perform to meet their business needs and specifications. Maintain all in house servers and network platform. (VMWare, Cisco).",
+				"Design, develop, and maintain warehouse software and automated sales system (Java, HTML, JavaScript, DB2)."
+			],
+			"startMonthYear": "Jul 2014",
+			"endMonthYear": "Nov 2015"
+		},
+		{
+			"name": "Febeca C.A.",
+			"occupation": "Intern",
+			"location": "Valencia, Venezuela",
+			"notes": [
+				"Analyzing, designing and implementing new IT solutions for the automated sales system and warehouse processes to improve business efficiency and productivity.",
+				"Developed an Android application that uses a Web Service to communicate with the server and get the current status and details of the purchase orders (JAX-WS runtime to communicate with a GlassFish Server)."
+			],
+			"startMonthYear": "Oct 2013",
+			"endMonthYear": "Feb 2014"
+		}
+	],
+	"education": [
+		{
+			"location": "Valencia, Venezuela",
+			"degree": "BsC, Electronics and Communications Engineering",
+			"endYear": "2014",
+			"school": "University of Carabobo",
+			"startYear": "2008",
+			"notes": [
+				"Career Final Project / Thesis: development and implementation of an electromagnetic code in FORTRAN and Python for solving electrically large scattering problems with metallic bodies by using the Method of Moments (MoM) and the Multilevel Fast Multipole Method (MLFMM)."
+			]
+		},
+		{
+			"location": "Valencia, Venezuela",
+			"degree": "AsC, Network Engineering",
+			"endYear": "2010",
+			"school": "Keys Masters Technology",
+			"startYear": "2009",
+			"notes": [
+				"Installation, planning, design, and management of high-level networks including Wireless Networks, Structured Cabling, Fiber Optics, Network Hardware, Network Administration and Server, TCP/IP, Intranets."
+			]
+		}
+	],
+	"certifications": [
+		{
+			"authority": "Amazon Web Services Training and Certification",
+			"endMonthYear": "Jul 2023",
+			"licenseNumber": "",
+			"name": "AWS Certified Cloud Practitioner (CCP)",
+			"startMonthYear": "Jul 2020",
+			"url": "https://www.youracclaim.com/badges/daf98e89-320d-4a88-a363-52fc5316eaa6/public_url"
+		},
+		{
+			"authority": "Red Hat",
+			"endMonthYear": "Apr 2022",
+			"licenseNumber": "180-071-854",
+			"name": "Red Hat Certified Engineer (RHCE)",
+			"startMonthYear": "Apr 2019",
+			"url": "https://www.redhat.com/rhtapps/certification/verify/?certId=180-071-854"
+		},
+		{
+			"authority": "Red Hat",
+			"endMonthYear": "Apr 2022",
+			"licenseNumber": "180-071-854",
+			"name": "Red Hat Certified Engineer (RHCSA)",
+			"startMonthYear": "Apr 2018",
+			"url": "https://www.redhat.com/rhtapps/certification/verify/?certId=180-071-854"
+		},
+		{
+			"authority": "The Linux Foundation",
+			"endMonthYear": "Nov 2021",
+			"licenseNumber": "CKA-1800-001044-0100",
+			"name": "Certified Kubernetes Administrator (CKA)",
+			"startMonthYear": "Nov 2018",
+			"url": "https://www.youracclaim.com/badges/ac52122f-c28f-4b64-854d-23426a6f3d6d/public_url"
+		}
+	],
+	"skills": [
+		{
+			"category": "Cloud",
+			"values": "AWS, GCP, DigitalOcean, Heroku."
+		},
+		{
+			"category": "DevOps",
+			"values": "Ansible, Puppet, Terraform, Jenkins, Gitlab, Docker, Kubernetes."
+		},
+		{
+			"category": "Languages",
+			"values": "C/C++, Java, .NET, Python, FORTRAN, Scala, JavaScript (Node.js), Golang."
+		},
+		{
+			"category": "Servers Technology",
+			"values": "Windows Server, Windows Server 2003, Windows NT Server, Windows NT WorkStation, CentOS, RedHatOS."
+		},
+		{
+			"category": "Scientific Software",
+			"values": "Matlab, Simulink, Octave, PSpice, LTspice, CST Microwave Studio, EZNEC, Advanced Design System (ADS)."
+		},
+		{
+			"category": "Databases",
+			"values": "MySQL, Postgres, SQL Server, DB2, MongoDB, RethinkDB, etcd."
+		},
+		{
+			"category": "Microcontroller",
+			"values": "MikroC, MikroBasic, ASM."
+		}
+	]
+}
