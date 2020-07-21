@@ -9,7 +9,7 @@ export default function Skills({ skills }) {
         <li key={index}>
           <Container>
             <h3>{category}</h3>
-            <p>{values}</p>
+            <p css={css`text-align: right;`}>{values}</p>
           </Container>
         </li>
       ))}

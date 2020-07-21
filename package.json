@@ -4,6 +4,8 @@
   "description": "A cloud project to advance your career.",
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "emotion": "^10.0.27",
+    "emotion-server": "^10.0.27",
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
