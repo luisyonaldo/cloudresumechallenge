@@ -83,7 +83,12 @@ export class StaticSite extends Construct {
             allowedMethods: cloudfront.CloudFrontAllowedMethods.ALL,
           }],
         },
-      ]
+      ],
+      errorConfigurations: [{
+        errorCode: 404,
+        responsePagePath: '/404.html',
+        responseCode: 404,
+      }]
     });
     new cdk.CfnOutput(this, 'DistributionId', { value: distribution.distributionId });
 
@@ -101,9 +106,9 @@ export class StaticSite extends Construct {
       distribution,
       // paths to invalidate
       distributionPaths: [
-        'index.html',
-        '404.html',
-        '_next/*',
+        '/index.html',
+        '/404.html',
+        '/_next/*',
       ],
     });
   }
