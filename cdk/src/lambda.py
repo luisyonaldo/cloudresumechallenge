@@ -15,15 +15,15 @@ SITE_DOMAIN = os.environ["SITE_DOMAIN"]
 def handler(event, context):
     table = dynamodb.Table(TABLE_NAME)
 
-    views = table.update_item(
-        Key={"siteDomain": SITE_DOMAIN,},
-        # increase site views
-        UpdateExpression="set views = views + :val",
-        ExpressionAttributeValues={":val": 1,},
+    response = table.update_item(
+        Key={"domain": SITE_DOMAIN},
+        # increase site visits
+        UpdateExpression="set visits = visits + :inc",
+        ExpressionAttributeValues={":inc": 1},
         ReturnValues="UPDATED_NEW",
     )
 
     return {
         "statusCode": 200,
-        "body": views,
+        "body": {"visits": response["Attributes"]["visits"]},
     }
