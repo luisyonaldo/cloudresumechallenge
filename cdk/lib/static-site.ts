@@ -99,7 +99,12 @@ export class StaticSite extends Construct {
       sources: [s3deploy.Source.asset('../out')],
       destinationBucket: siteBucket,
       distribution,
-      distributionPaths: ['/*'],
+      // paths to invalidate
+      distributionPaths: [
+        'index.html',
+        '404.html',
+        '_next/*',
+      ],
     });
   }
 }
