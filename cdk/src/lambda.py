@@ -25,5 +25,5 @@ def handler(event, context):
 
     return {
         "statusCode": 200,
-        "body": {"visits": response["Attributes"]["visits"]},
+        "body": json.dumps({"visits": int(response["Attributes"]["visits"])}),
     }
