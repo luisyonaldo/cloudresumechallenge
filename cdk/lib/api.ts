@@ -12,6 +12,8 @@ export class Api extends Construct {
   constructor(parent: Construct, id: string, props: ApiProps) {
     super(parent, id);
 
+    const { siteDomain } = props
+
     const dynamoTable = new dynamodb.Table(this, 'Views', {
       partitionKey: {
         name: 'siteDomain',
@@ -30,7 +32,8 @@ export class Api extends Construct {
       runtime: lambda.Runtime.PYTHON_3_8,
       environment: {
         TABLE_NAME: dynamoTable.tableName,
-        PRIMARY_KEY: 'siteDomain'
+        PRIMARY_KEY: 'siteDomain',
+        SITE_DOMAIN: siteDomain,
       }
     });
 
@@ -54,7 +57,7 @@ export class Api extends Construct {
         responseParameters: {
           'method.response.header.Access-Control-Allow-Methods': "'GE,OPTIONS'",
           'method.response.header.Access-Control-Allow-Headers': "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
-          'method.response.header.Access-Control-Allow-Origin': `'*'`, // ${props.siteDomain}
+          'method.response.header.Access-Control-Allow-Origin': "'*'", // `'${siteDomain}'`
         },
       }],
       passthroughBehavior: apigateway.PassthroughBehavior.NEVER,
