@@ -6,11 +6,14 @@ import s3deploy = require('@aws-cdk/aws-s3-deployment');
 import acm = require('@aws-cdk/aws-certificatemanager');
 import cdk = require('@aws-cdk/core');
 import targets = require('@aws-cdk/aws-route53-targets/lib');
-import { Construct } from '@aws-cdk/core';
+import { Construct, Stack } from '@aws-cdk/core';
 
 export interface StaticSiteProps {
-  domainName: string;
-  siteSubDomain: string;
+  siteDomain: string;
+  api: {
+    id: string;
+    originPath: string;
+  }
 }
 
 /**
@@ -20,11 +23,12 @@ export interface StaticSiteProps {
  * Route53 alias record, and ACM certificate.
  */
 export class StaticSite extends Construct {
-  constructor(parent: Construct, name: string, props: StaticSiteProps) {
-    super(parent, name);
+  constructor(parent: Construct, id: string, props: StaticSiteProps) {
+    super(parent, id);
 
-    const zone = route53.HostedZone.fromLookup(this, 'Zone', { domainName: props.domainName });
-    const siteDomain = props.siteSubDomain + '.' + props.domainName;
+    const { siteDomain, api } = props
+
+    const zone = route53.HostedZone.fromLookup(this, 'Zone', { domainName: siteDomain });
     new cdk.CfnOutput(this, 'Site', { value: 'https://' + siteDomain });
 
     // Content bucket
@@ -45,12 +49,14 @@ export class StaticSite extends Construct {
 
     // TLS certificate
     const certificateArn = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
-      domainName: siteDomain,
+      domainName: props.siteDomain,
+      // subjectAlternativeNames:
       hostedZone: zone,
       region: 'us-east-1', // Cloudfront only checks this region for certificates.
     }).certificateArn;
     new cdk.CfnOutput(this, 'Certificate', { value: certificateArn });
 
+    // const api = new URL()
     // CloudFront distribution that provides HTTPS
     const distribution = new cloudfront.CloudFrontWebDistribution(this, 'SiteDistribution', {
       aliasConfiguration: {
@@ -66,7 +72,17 @@ export class StaticSite extends Construct {
             originAccessIdentity: oai,
           },
           behaviors: [{ isDefaultBehavior: true }],
-        }
+        },
+        {
+          customOriginSource: {
+            domainName: `${api.id}.execute-api.${Stack.of(this).region}.amazonaws.com`,
+            originPath: `/${api.originPath}`,
+          },
+          behaviors: [{
+            pathPattern: '/api/*',
+            allowedMethods: cloudfront.CloudFrontAllowedMethods.ALL,
+          }],
+        },
       ]
     });
     new cdk.CfnOutput(this, 'DistributionId', { value: distribution.distributionId });

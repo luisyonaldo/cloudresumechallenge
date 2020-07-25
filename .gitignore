@@ -5,4 +5,8 @@ node_modules
 /.next/
 /out/
 
+# direnv
+.direnv
+.envrc
+
 .vscode
