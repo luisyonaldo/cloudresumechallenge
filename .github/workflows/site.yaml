@@ -1,0 +1,57 @@
+name: Static Site
+
+on:
+  push:
+    paths:
+    - 'site/**'
+    - 'cdk/lib/static-site.ts'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm ci
+    - run: npm run build
+      env:
+        DOMAIN: ${{ secrets.DOMAIN }}
+    - uses: actions/upload-artifact@v2
+      with:
+        name: nextjs-out
+        path: site/out/
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    defaults:
+      run:
+        working-directory: cdk
+    env:
+      DOMAIN: ${{ secrets.DOMAIN }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+    - uses: actions/download-artifact@v2
+      with:
+        name: nextjs-out
+        path: site/out/
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install -g cdk
+    - run: npm ci
+    - run: cdk synth -c domain=$DOMAIN MyStaticSite
+    - run: cdk diff -c domain=$DOMAIN MyStaticSite
+    - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
