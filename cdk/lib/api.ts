@@ -55,7 +55,7 @@ export class Api extends Construct {
       integrationResponses: [{
         statusCode: '200',
         responseParameters: {
-          'method.response.header.Access-Control-Allow-Methods': "'GE,OPTIONS'",
+          'method.response.header.Access-Control-Allow-Methods': "'OPTIONS,PUT'",
           'method.response.header.Access-Control-Allow-Headers': "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
           'method.response.header.Access-Control-Allow-Origin': "'*'", // `'${siteDomain}'`
         },

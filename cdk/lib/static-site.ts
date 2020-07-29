@@ -81,6 +81,14 @@ export class StaticSite extends Construct {
           behaviors: [{
             pathPattern: '/api/*',
             allowedMethods: cloudfront.CloudFrontAllowedMethods.ALL,
+            forwardedValues: {
+              queryString: false,
+              headers: [
+                'Access-Control-Request-Method',
+                'Access-Control-Request-Headers',
+                'Origin',
+              ],
+            },
           }],
         },
       ],
