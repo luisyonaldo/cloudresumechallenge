@@ -26,6 +26,7 @@ jobs:
       with:
         node-version: '12.x'
     - run: cd cdk
+    - run: ls -ls
     - run: npm install -g cdk
     - run: npm ci
     - run: cdk synth -c domain=$DOMAIN MyStaticSite
