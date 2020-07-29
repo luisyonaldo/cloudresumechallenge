@@ -32,4 +32,5 @@ jobs:
     - run: npm ci
     - run: mkdir -p ../site/out
     - run: cdk synth -c domain=$DOMAIN MyApi
-    - run: cdk deploy -c domain=$DOMAIN MyApi --force
+    - run: cdk diff -c domain=$DOMAIN MyApi
+    # - run: cdk deploy -c domain=$DOMAIN MyApi --force

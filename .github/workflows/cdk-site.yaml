@@ -35,4 +35,5 @@ jobs:
     - run: npm install -g cdk
     - run: npm ci
     - run: cdk synth -c domain=$DOMAIN MyStaticSite
-    - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
+    - run: cdk diff -c domain=$DOMAIN MyStaticSite
+    # - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
