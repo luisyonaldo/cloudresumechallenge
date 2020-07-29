@@ -6,6 +6,9 @@ on:
     - 'site/**'
     - 'cdk/lib/static-site.ts'
 
+env:
+  DOMAIN: ${{ secrets.DOMAIN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,21 +23,17 @@ jobs:
         node-version: '12.x'
     - run: npm ci
     - run: npm run build
-      env:
-        DOMAIN: ${{ secrets.DOMAIN }}
     - uses: actions/upload-artifact@v2
       with:
         name: nextjs-out
         path: site/out/
   deploy:
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     needs: build
     defaults:
       run:
         working-directory: cdk
-    env:
-      DOMAIN: ${{ secrets.DOMAIN }}
     steps:
     - uses: actions/checkout@v2
     - name: Configure AWS credentials
@@ -55,4 +54,4 @@ jobs:
     - run: npm ci
     - run: cdk synth -c domain=$DOMAIN MyStaticSite
     - run: cdk diff -c domain=$DOMAIN MyStaticSite
-    # - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
+    - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
