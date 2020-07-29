@@ -24,15 +24,12 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    - uses: actions/download-artifact@v2
-      with:
-        name: nextjs-out
-        path: site/out/
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
     - run: npm install -g cdk
     - run: npm ci
+    - run: mkdir -p ../site/out
     - run: cdk synth -c domain=$DOMAIN MyApi
     - run: cdk deploy -c domain=$DOMAIN MyApi --force
