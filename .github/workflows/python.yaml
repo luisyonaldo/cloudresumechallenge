@@ -23,8 +23,8 @@ jobs:
         pip install pytest
         pip install -r requirements.txt
       env:
-        AWS_DEFAULT_REGION: "region"
-        TABLE_NAME: "table"
+        AWS_DEFAULT_REGION: "us-east-1"
+        TABLE_NAME: table
         SITE_DOMAIN: domain
     - name: Test with pytest
       run: python -m pytest tests/ -v
