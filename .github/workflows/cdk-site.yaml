@@ -1,4 +1,4 @@
-name: CDK deploy Api Static Site
+name: CDK deploy Static Site
 
 on:
   push:
@@ -34,5 +34,5 @@ jobs:
         node-version: '12.x'
     - run: npm install -g cdk
     - run: npm ci
-    - run: cdk synth -c domain=$DOMAIN MyApi
-    - run: cdk deploy -c domain=$DOMAIN MyApi
+    - run: cdk synth -c domain=$DOMAIN MyStaticSite
+    - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
