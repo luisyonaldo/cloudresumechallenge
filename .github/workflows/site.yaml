@@ -29,6 +29,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     # if: github.ref == 'refs/heads/master'
+    needs: build
     defaults:
       run:
         working-directory: cdk
