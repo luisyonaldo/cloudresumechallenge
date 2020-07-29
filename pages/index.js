@@ -4,6 +4,8 @@ import Experience from '../components/Experience'
 import Education from '../components/Education'
 import Certifications from '../components/Certifications'
 import Skills from '../components/Skills'
+import Visits from '../components/Visits'
+
 import resume from '../data/resume'
 
 export default function Home({ resume: { profile, organizations, education, certifications, skills } }) {
@@ -23,6 +25,7 @@ export default function Home({ resume: { profile, organizations, education, cert
         <Section title="Technologies and Languages">
           <Skills skills={skills} />
         </Section>
+        <Visits />
       </main>
     </div>
   )

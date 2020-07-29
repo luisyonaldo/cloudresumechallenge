@@ -5,8 +5,10 @@ node_modules
 /.next/
 /out/
 
-# direnv
+# env files
 .direnv
 .envrc
+.env.local
 
+# IDE
 .vscode
