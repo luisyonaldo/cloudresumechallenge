@@ -54,4 +54,4 @@ jobs:
     - run: npm ci
     - run: cdk synth -c domain=$DOMAIN MyStaticSite
     - run: cdk diff -c domain=$DOMAIN MyStaticSite
-    - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
+    - run: cdk deploy -c domain=$DOMAIN MyStaticSite --require-approval=never
