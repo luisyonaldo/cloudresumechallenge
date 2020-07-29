@@ -27,8 +27,8 @@ export class Api extends Construct {
     });
 
     const increaseAndGetVisitis = new lambda.Function(this, 'increaseAndGetVisitisFunction', {
-      code: new lambda.AssetCode('src'),
-      handler: 'lambda.handler',
+      code: new lambda.AssetCode('../api'),
+      handler: 'visits.handler',
       runtime: lambda.Runtime.PYTHON_3_8,
       environment: {
         TABLE_NAME: dynamoTable.tableName,

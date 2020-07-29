@@ -12,10 +12,10 @@ TABLE_NAME = os.environ["TABLE_NAME"]
 SITE_DOMAIN = os.environ["SITE_DOMAIN"]
 
 
-def handler(event, context):
+def increase():
     table = dynamodb.Table(TABLE_NAME)
 
-    response = table.update_item(
+    visits = table.update_item(
         Key={"domain": SITE_DOMAIN},
         # increase site visits
         UpdateExpression="set visits = visits + :inc",
@@ -23,8 +23,14 @@ def handler(event, context):
         ReturnValues="UPDATED_NEW",
     )
 
+    return int(visits["Attributes"]["visits"])
+
+
+def handler(event, context):
+    visits = increase()
+
     return {
         "statusCode": 200,
         "headers": {"Access-Control-Allow-Origin": "*"},
-        "body": json.dumps({"visits": int(response["Attributes"]["visits"])}),
+        "body": json.dumps({"visits": visits}),
     }
