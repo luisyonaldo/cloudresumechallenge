@@ -31,6 +31,6 @@ def handler(event, context):
 
     return {
         "statusCode": 200,
-        "headers": {"Access-Control-Allow-Origin": "*"},
+        "headers": {"Access-Control-Allow-Origin": SITE_DOMAIN},
         "body": json.dumps({"visits": visits}),
     }
