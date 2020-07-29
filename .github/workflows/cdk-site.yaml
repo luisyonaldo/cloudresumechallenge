@@ -11,6 +11,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cdk
     env:
       DOMAIN: ${{ secrets.DOMAIN }}
     steps:
@@ -29,7 +32,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: cd cdk
     - run: npm install -g cdk
     - run: npm ci
     - run: cdk synth -c domain=$DOMAIN MyApi
