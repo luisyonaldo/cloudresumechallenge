@@ -27,7 +27,7 @@ export class Api extends Construct {
     });
 
     const increaseAndGetVisitis = new lambda.Function(this, 'increaseAndGetVisitisFunction', {
-      code: new lambda.AssetCode('../api'),
+      code: new lambda.AssetCode('../api/app'),
       handler: 'visits.handler',
       runtime: lambda.Runtime.PYTHON_3_8,
       environment: {
