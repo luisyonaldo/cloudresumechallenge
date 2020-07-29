@@ -28,7 +28,7 @@ jobs:
         path: site/out/
   deploy:
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     defaults:
       run:
         working-directory: cdk
@@ -54,4 +54,4 @@ jobs:
     - run: npm ci
     - run: cdk synth -c domain=$DOMAIN MyStaticSite
     - run: cdk diff -c domain=$DOMAIN MyStaticSite
-    # - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force
+    - run: cdk deploy -c domain=$DOMAIN MyStaticSite --force

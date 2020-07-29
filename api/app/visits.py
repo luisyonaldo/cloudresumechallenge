@@ -9,7 +9,8 @@ dynamodb = boto3.resource("dynamodb")
 
 # set environment variable
 TABLE_NAME = os.environ["TABLE_NAME"]
-SITE_DOMAIN = os.environ["SITE_DOMAIN"]  # TODO: get this from event
+SITE_DOMAIN = os.environ["SITE_DOMAIN"]
+
 
 def increase():
     table = dynamodb.Table(TABLE_NAME)
