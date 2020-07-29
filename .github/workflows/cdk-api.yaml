@@ -1,9 +1,9 @@
 name: CDK deploy Api
 
 on:
-  pull_request:
-    # branches:
-    #   - master
+  push:
+    branches:
+      - master
     paths:
     - 'api/**'
     - 'cdk/lib/api.ts'
@@ -33,4 +33,4 @@ jobs:
     - run: mkdir -p ../site/out
     - run: cdk synth -c domain=$DOMAIN MyApi
     - run: cdk diff -c domain=$DOMAIN MyApi
-    # - run: cdk deploy -c domain=$DOMAIN MyApi --force
+    - run: cdk deploy -c domain=$DOMAIN MyApi --force

@@ -12,7 +12,7 @@ export default function Visits() {
   if (error || !data) return null
   return (
     <div css={css`text-align: center;`}>
-      You are the {data.visits} visitor on this site!
+      You are the <b>{data.visits}</b> visitor on this site!
     </div>
   )
 }
