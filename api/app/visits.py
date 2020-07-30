@@ -2,8 +2,10 @@ import json
 import os
 
 import boto3
+from aws_lambda_powertools import Logger
 from botocore.exceptions import ClientError
 
+logger = Logger()
 
 # set environment variable
 ENDPOINT_URL = os.environ["ENDPOINT_URL"]
@@ -28,8 +30,10 @@ def increase():
     return int(visits["Attributes"]["visits"])
 
 
+@logger.inject_lambda_context
 def handler(event, context):
     visits = increase()
+    logger.structure_logs(append=True, visits=visits)
 
     return {
         "statusCode": 200,

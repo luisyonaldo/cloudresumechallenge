@@ -27,8 +27,16 @@ export class Api extends Construct {
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST, // on-demand pricing and scaling
     });
 
+
     const increaseAndGetVisitis = new lambda.Function(this, 'increaseAndGetVisitisFunction', {
-      code: new lambda.AssetCode('../api/app'),
+      code: lambda.Code.fromAsset('../api/app', {
+        bundling: {
+          image: lambda.Runtime.PYTHON_3_8.bundlingDockerImage,
+          command: [
+            'bash', '-c', 'cp -R /asset-input/* /asset-output && pip install -r requirements.txt -t /asset-output',
+          ],
+        },
+      }),
       handler: 'visits.handler',
       runtime: lambda.Runtime.PYTHON_3_8,
       environment: {
