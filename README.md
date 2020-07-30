@@ -21,8 +21,8 @@ Github actions to test, build, and deploy Static Site + API.
 
 ### Frontend
 
-`api.yaml` workflow to test python application. If successful, CDK is used to deploy resources when code has been merged to `master`.
+`site.yaml` workflow to build the Static Site (nextjs build & export to convert [React](https://reactjs.org/) components to HTML for static side rendering). If successful, CDK is used to deploy resources when code has been merged to `master`.
 
 ### Backend
 
-`site.yaml` workflow to build the Static Site (nextjs build & export to convert [React](https://reactjs.org/) components to HTML for static side rendering). If successful, CDK is used to deploy resources when code has been merged to `master`.
+`api.yaml` workflow to test python application. If successful, CDK is used to deploy resources when code has been merged to `master`.
