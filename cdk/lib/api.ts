@@ -24,6 +24,7 @@ export class Api extends Construct {
       // the new table, and it will remain in your account until manually deleted. By setting the policy to
       // DESTROY, cdk destroy will delete the table (even if it has data in it)
       removalPolicy: cdk.RemovalPolicy.DESTROY, // NOT recommended for production code
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST, // on-demand pricing and scaling
     });
 
     const increaseAndGetVisitis = new lambda.Function(this, 'increaseAndGetVisitisFunction', {
