@@ -4,12 +4,14 @@ import os
 import boto3
 from botocore.exceptions import ClientError
 
-# Get the service resource.
-dynamodb = boto3.resource("dynamodb")
 
 # set environment variable
+ENDPOINT_URL = os.environ["ENDPOINT_URL"]
 TABLE_NAME = os.environ["TABLE_NAME"]
 SITE_DOMAIN = os.environ["SITE_DOMAIN"]  # TODO: get this from event
+
+# Get the service resource.
+dynamodb = boto3.resource("dynamodb", endpoint_url=ENDPOINT_URL)
 
 
 def increase():
@@ -18,7 +20,7 @@ def increase():
     visits = table.update_item(
         Key={"domain": SITE_DOMAIN},
         # increase site visits
-        UpdateExpression="set visits = visits + :inc",
+        UpdateExpression="ADD visits :inc",
         ExpressionAttributeValues={":inc": 1},
         ReturnValues="UPDATED_NEW",
     )

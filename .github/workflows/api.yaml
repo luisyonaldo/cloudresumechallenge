@@ -7,13 +7,36 @@ on:
     - 'cdk/lib/api.ts'
 
 jobs:
-  test:
+  container-job:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: api
+
+    services:
+      dynamodb:
+        image: amazon/dynamodb-local
+        ports:
+        - 8000:8000
+    env:
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
     steps:
     - uses: actions/checkout@v2
+    - name: Instal aws cli
+      run: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+    - name: Create dynamodb table
+      run: |
+        aws dynamodb create-table \
+          --endpoint-url http://localhost:8000 \
+          --table-name 'SiteVisits' \
+          --attribute-definitions AttributeName=domain,AttributeType=S \
+          --key-schema AttributeName=domain,KeyType=HASH \
+          --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
     - name: Set up Python 3.x
       uses: actions/setup-python@v2
       with:
@@ -26,13 +49,13 @@ jobs:
     - name: Test with pytest
       run: python -m pytest tests/ -v
       env:
-        AWS_DEFAULT_REGION: "us-east-1"
-        TABLE_NAME: table
+        ENDPOINT_URL: http://localhost:8000
+        TABLE_NAME: SiteVisits
         SITE_DOMAIN: domain
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-    needs: test
+    needs: container-job
     defaults:
       run:
         working-directory: cdk
@@ -45,7 +68,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        aws-region: $AWS_REGION
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
