@@ -2,7 +2,7 @@ import apigateway = require('@aws-cdk/aws-apigateway');
 import dynamodb = require('@aws-cdk/aws-dynamodb');
 import lambda = require('@aws-cdk/aws-lambda');
 import cdk = require('@aws-cdk/core');
-import { Construct, CfnOutput } from '@aws-cdk/core';
+import { Construct, CfnOutput, Stack } from '@aws-cdk/core';
 
 export interface ApiProps {
   siteDomain: string;
@@ -31,6 +31,7 @@ export class Api extends Construct {
       handler: 'visits.handler',
       runtime: lambda.Runtime.PYTHON_3_8,
       environment: {
+        ENDPOINT_URL: `https://dynamodb.${Stack.of(this).region}.amazonaws.com`,
         TABLE_NAME: dynamoTable.tableName,
         PRIMARY_KEY: 'domain',
         SITE_DOMAIN: siteDomain,

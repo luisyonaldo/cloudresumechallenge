@@ -2,7 +2,7 @@ import json
 import unittest
 from unittest.mock import patch
 
-from app.visits import handler
+from app.visits import handler, increase
 
 
 class TestLamnda(unittest.TestCase):
@@ -18,6 +18,14 @@ class TestLamnda(unittest.TestCase):
         }
         actual = handler({}, {})
         self.assertEqual(actual, expected)
+
+    def test_increase(self):
+        expected = 4
+        actual = 0
+        for _ in range(expected):
+            actual = increase()
+
+        self.assertEquals(actual, expected)
 
 
 if __name__ == "__main__":
